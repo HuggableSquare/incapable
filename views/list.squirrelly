@@ -1,0 +1,31 @@
+<link rel="stylesheet" href="{{it.url}}/css/app.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📽️</text></svg>">
+<title>incapable</title>
+
+<main>
+  {{@if (it.entities.length)}}
+    <table>
+      <tr>
+        <td class="center collapse">thumb</td>
+        <td>name</td>
+      </tr>    
+      {{@each (it.entities) => entity}}
+        <tr>
+          {{@if (entity.isDirectory)}}
+            <td class="center collapse"><a href="{{it.url}}/directory/{{entity.id}}"><img src="{{it.url}}/thumb/{{entity.id}}" /></a></td>
+            <td>{{entity.name}}</td>
+            <td>{{entity.numberOfChildren}}</td>
+            <td class="collapse"><a href="{{it.url}}/directory/{{entity.id}}">link</a></td>
+          {{#else}}
+            <td class="center collapse"><a href="{{it.url}}/clip/{{entity.id}}"><img src="{{it.url}}/thumb/{{entity.id}}" /></a></td>
+            <td>{{entity.name}}</td>
+            <td><a href="{{it.url}}/video/{{entity.id}}">dl</a></td>
+            <td class="collapse"><a href="{{it.url}}/clip/{{entity.id}}">link</a></td>
+          {{/if}}
+        </tr>
+      {{/each}}
+    </table>
+  {{#else}}
+    No clips!
+  {{/if}}
+</main>

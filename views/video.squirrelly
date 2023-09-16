@@ -1,0 +1,39 @@
+<meta property="og:type" content="video">
+<meta property="og:url" content="{{it.url}}/video/{{it.entity.id}}">
+<meta property="og:video" content="{{it.url}}/video/{{it.entity.id}}">
+<meta property="og:video:url" content="{{it.url}}/video/{{it.entity.id}}">
+<meta property="og:video:secure_url" content="{{it.url}}/video/{{it.entity.id}}">
+<meta property="og:video:type" content="{{it.metadata.mime}}">
+<meta property="og:video:width" content="{{it.metadata.width}}">
+<meta property="og:video:height" content="{{it.metadata.height}}">
+<meta property="og:image" content="{{it.url}}/thumb/{{it.entity.id}}">
+<meta property="og:title" content="{{it.entity.name}}">
+
+<link rel="stylesheet" href="{{it.url}}/css/app.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📽️</text></svg>">
+<title>{{it.entity.name}} | incapable</title>
+
+<link rel="stylesheet" href="https://cdn.plyr.io/3.7.8/plyr.css" />
+<style>
+  {{! /* make sure the page doesn't reflow when loading */}}
+  .plyr video, video {
+    aspect-ratio: {{it.metadata.width}} / {{it.metadata.height}};
+    {{@if (it.metadata.width > it.metadata.height)}}
+      width: {{it.metadata.width}};
+    {{#else}}
+      height: {{it.metadata.height}};
+    {{/if}}
+  }
+</style>
+
+<main>
+  <div class="video-wrapper">
+    <div class="name">{{it.entity.name}}</div>
+    <video id="player" controls loop data-poster="{{it.url}}/thumb/{{it.entity.id}}">
+      <source src="{{it.url}}/video/{{it.entity.id}}">
+    </video>
+  </div>
+</main>
+
+<script src="https://cdn.plyr.io/3.7.8/plyr.js"></script>
+<script>new Plyr('#player');</script>

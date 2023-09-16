@@ -1,0 +1,16 @@
+{
+  "name": "incapable",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "type": "module",
+  "dependencies": {
+    "chokidar": "^3.5.3",
+    "config": "^3.3.9",
+    "express": "^4.18.2",
+    "leather": "^3.0.3",
+    "squirrelly": "^9.0.0",
+    "thumbsupply": "^0.4.0",
+    "wordhash": "^1.0.1"
+  }
+}
