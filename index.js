@@ -2,14 +2,9 @@ import express from 'express';
 import { getVideoMetadata } from './utils.js';
 import { Directory } from './directory.js';
 import config from 'config';
-import path from 'node:path';
-import { fileURLToPath } from 'url';
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
 
 const app = express();
-const directory = new Directory(path.join(__dirname, 'clips'));
+const directory = new Directory(config.directory);
 
 app.set('view engine', 'squirrelly');
 app.use(express.static('public'));
