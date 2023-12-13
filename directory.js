@@ -2,7 +2,6 @@ import { readdir } from 'node:fs/promises';
 import { createHash } from 'node:crypto';
 import wordhash from 'wordhash';
 import thumbsupply from 'thumbsupply';
-import { fileNameFormat } from './utils.js';
 import chokidar from 'chokidar';
 
 const wordHash = wordhash();
@@ -48,7 +47,7 @@ export class Directory {
   #getFileThumbnail(entity) {
     return thumbsupply.generateThumbnail(entity.path);
   }
-  
+
   #getDirectoryThumbnail(entity) {
     const childFile = this.entities.find(({ parentDirectoryId, isDirectory }) => parentDirectoryId === entity.id && !isDirectory);
     if (childFile) return this.#getFileThumbnail(childFile);
@@ -64,12 +63,12 @@ export class Directory {
       const path = `${dir}/${ent.name}`;
       const entity = {
         id: this.#createId(path),
-        name: ent.isFile() ? fileNameFormat(ent, dir) : ent.name,
+        name: ent.name,
         parentDirectoryId: this.#createId(dir),
         isDirectory: ent.isDirectory(),
         path
       };
-  
+
       entities.push(entity);
   
       if (ent.isDirectory()) {

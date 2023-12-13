@@ -1,7 +1,7 @@
 import express from 'express';
-import { getVideoMetadata } from './utils.js';
 import { Directory } from './directory.js';
 import config from 'config';
+import { readMediaAttributes } from 'leather';
 
 const app = express();
 const directory = new Directory(config.directory);
@@ -28,7 +28,7 @@ app.get('/clip/:id', (req, res) => {
   if (!entity) {
     return res.status(404).send();
   }
-  const metadata = getVideoMetadata(entity);
+  const metadata = readMediaAttributes(entity.path);
   return res.render('video', { entity, metadata, url: config.url });
 });
 
