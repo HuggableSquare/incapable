@@ -16,7 +16,8 @@
 <link rel="stylesheet" href="https://cdn.plyr.io/3.7.8/plyr.css" />
 <style>
   {{! /* make sure the page doesn't reflow when loading */}}
-  .plyr video, video {
+  .plyr:not(:fullscreen) video,
+  .video-wrapper > video {
     aspect-ratio: {{it.metadata.width}} / {{it.metadata.height}};
     {{@if (it.metadata.width > it.metadata.height)}}
       width: {{it.metadata.width}};
